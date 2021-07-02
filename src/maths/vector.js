@@ -1,11 +1,11 @@
 import Tuple from './tuple';
 
-export default class Point extends Tuple {
+export default class Vector extends Tuple {
     constructor(x, y, z) {
         super();
         super.x = x;
         super.y = y;
         super.z = z;
-        super.w = 1.0;
+        super.w = 0.0;
     }
 }
