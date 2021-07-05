@@ -1,6 +1,10 @@
 import Tuple from '../maths/tuple.js';
+import Matrix from '../maths/matrix.js';
 import Canvas from '../canvas.js';
 import Color from '../color.js';
+
+
+
 var frameCount = 0;
 var fps, fpsInterval, startTime, now, then, elapsed;
 
@@ -18,7 +22,7 @@ let c = new Canvas(1000,1000);
 let position = Tuple.point(200, 200, 0);
 let velocity = Tuple.vector(2.0, -5, 0);
 let gravity = Tuple.vector(0.0, 0.2, 0);
-let wind = Tuple.vector(0.0, 0.0, 0);
+let wind = Tuple.vector(0.2, 0.0, 0);
 
 function drawCircle(ctx, x, y, radius, fill, stroke, strokeWidth) {
     ctx.beginPath()
@@ -50,7 +54,7 @@ function tick() {
     //ctx.clearRect(0, 0, canvas.width, canvas.height);
     //drawCircle(ctx, position.x, position.y, 100 * position.normalize().x, 'black', 'red', 2 * position.normalize().x)
 
-    c.writePixel( position.x, position.y,new Color(255,0,0));
+    c.writePixel( position.x, position.y,new Color(255,0,255));
 
     c.renderToCanvas('myCanvas');
 
@@ -90,5 +94,12 @@ function startAnimating(fps) {
 }
 
 startAnimating(60);
+
+let matrix = new Matrix(4, 4);
+matrix.log();
+matrix = new Matrix(2, 2);
+matrix.log();
+matrix = new Matrix(3, 3);
+matrix.log();
 
 
