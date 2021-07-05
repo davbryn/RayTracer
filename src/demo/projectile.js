@@ -1,5 +1,6 @@
 import Tuple from '../maths/tuple.js';
-
+import Canvas from '../canvas.js';
+import Color from '../color.js';
 var frameCount = 0;
 var fps, fpsInterval, startTime, now, then, elapsed;
 
@@ -10,10 +11,14 @@ let start = 0;
 const canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext('2d')
 
+
+let c = new Canvas(1000,1000);
+
+
 let position = Tuple.point(200, 200, 0);
 let velocity = Tuple.vector(2.0, -5, 0);
 let gravity = Tuple.vector(0.0, 0.2, 0);
-let wind = Tuple.vector(0.1, 0.0, 0);
+let wind = Tuple.vector(0.0, 0.0, 0);
 
 function drawCircle(ctx, x, y, radius, fill, stroke, strokeWidth) {
     ctx.beginPath()
@@ -43,7 +48,11 @@ function tick() {
         velocity.y = -velocity.y;
     }
     //ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawCircle(ctx, position.x, position.y, 100 * position.normalize().x, 'black', 'red', 2 * position.normalize().x)
+    //drawCircle(ctx, position.x, position.y, 100 * position.normalize().x, 'black', 'red', 2 * position.normalize().x)
+
+    c.writePixel( position.x, position.y,new Color(255,0,0));
+
+    c.renderToCanvas('myCanvas');
 
 }
 

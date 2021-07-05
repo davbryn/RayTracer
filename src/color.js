@@ -25,6 +25,7 @@ export default class Color {
         return new Color(this.r * scalar, this.g * scalar, this.b * scalar);
     }
 
+
    
 }
 
