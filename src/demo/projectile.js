@@ -1,11 +1,17 @@
 import Tuple from '../maths/tuple.js';
 
+var frameCount = 0;
+var fps, fpsInterval, startTime, now, then, elapsed;
+
+
+
+
 let start = 0;
 const canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext('2d')
 
 let position = Tuple.point(200, 200, 0);
-let velocity = Tuple.vector(1.0, -5, 0);
+let velocity = Tuple.vector(2.0, -5, 0);
 let gravity = Tuple.vector(0.0, 0.2, 0);
 let wind = Tuple.vector(0.1, 0.0, 0);
 
@@ -37,20 +43,43 @@ function tick() {
         velocity.y = -velocity.y;
     }
     //ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawCircle(ctx, position.x, position.y, 5, 'black', 'red', 2)
+    drawCircle(ctx, position.x, position.y, 100 * position.normalize().x, 'black', 'red', 2 * position.normalize().x)
 
 }
 
-export default function animate(timestamp) { 
-    const elapsed = timestamp - start;
-    if (elapsed > 0) {
-      start = timestamp;
-      tick();
+function animate(timestamp) { 
+
+        // request another frame
+
+    requestAnimationFrame(animate);
+
+    // calc elapsed time since last loop
+
+    now = Date.now();
+    elapsed = now - then;
+
+    // if enough time has elapsed, draw the next frame
+
+    if (elapsed > fpsInterval) {
+
+        // Get ready for next frame by setting then=now, but also adjust for your
+        // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
+        then = now - (elapsed % fpsInterval);
+
+        // Put your drawing code here
+        tick();
     }
-    requestAnimationFrame(animate); 
 }
 
 
-animate(0);
+
+function startAnimating(fps) {
+    fpsInterval = 1000 / fps;
+    then = Date.now();
+    startTime = then;
+    animate();
+}
+
+startAnimating(60);
 
 

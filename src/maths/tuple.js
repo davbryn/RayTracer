@@ -9,6 +9,10 @@ export default class Tuple {
         this.w = w;
     }
 
+    static color(r, g, b) {
+        return new Tuple(r, g, b, 0.0);
+    }
+
     static point(x, y, z) {
         return new Tuple(x, y, z, 1.0);
     }
@@ -20,6 +24,7 @@ export default class Tuple {
     static zeroVector() {
         return new Tuple(0.0, 0.0, 0.0, 0.0);
     }
+
 
     add(tuple) {
      return new Tuple(this.x + tuple.x, this.y + tuple.y, this.z + tuple.z, this.w + tuple.w)
@@ -34,11 +39,11 @@ export default class Tuple {
     }
 
     multiply(scalar) {
-        return new Tuple(this.x * tuple.x, this.y * tuple.y, this.z * tuple.z, this.w * tuple.w)
+        return new Tuple(this.x * scalar, this.y * scalar, this.z * scalar, this.w * scalar)
     }
 
     divide(scalar) {
-        return new Tuple(this.x / tuple.x, this.y / tuple.y, this.z / tuple.z, this.w / tuple.w)
+        return new Tuple(this.x / scalar, this.y / scalar, this.z / scalar, this.w / scalar)
     }
 
     magnitude() {
