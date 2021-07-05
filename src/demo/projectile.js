@@ -95,6 +95,27 @@ function startAnimating(fps) {
 
 startAnimating(60);
 
+let a = new Matrix(0,0);
+
+a.populate([[1, 2, 3, 4],
+            [5, 6, 7, 8],
+            [9, 8, 7, 6],
+            [5, 4, 3, 2]
+]);
+
+let b = new Matrix(0,0);
+
+b.populate([[-2, 1, 2, 3],
+            [3, 2, 1, -1],
+            [4, 3, 6, 5],
+            [1, 2, 7, 8]
+]);
+
+a.log();
+b.log();
+let o = a.multiply(b);
+o.log();
+
 let matrix = new Matrix(4, 4);
 matrix.log();
 matrix = new Matrix(2, 2);
