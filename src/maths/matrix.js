@@ -106,6 +106,23 @@ export default class Matrix {
         let determinate = ((this.value(0,0) * this.value(1,1)) - (this.value(0,1) * this.value(1,0)));
         return determinate;
     }
+
+    submatrix(row, col) {
+        let result = new Matrix(this.numRows-1, this.numColumns-1);
+        let r1 = 0;
+        
+        for(var r=0; r < this.numRows; r++) {
+            if (r == row) continue;
+            let c1 = 0;
+            for(var c=0; c < this.numColumns; c++) {
+                if (c == col) continue;
+                result.matrix[r1][c1] = this.value(r, c);
+                c1++;
+            }
+            r1++;
+        }
+        return result;
+    }
    
 }
 

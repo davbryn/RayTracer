@@ -153,8 +153,17 @@ function startAnimating(fps) {
 // d.log();
 
 
-let d = new Matrix(2,2);
-d.populate([[1, 5],
-            [-3, 2]]);
-let det = d.determinate_2x2();
+// let d = new Matrix(2,2);
+// d.populate([[1, 5],
+//             [-3, 2]]);
+// let det = d.determinate_2x2();
+// console.log(det);
+
+
+let d = new Matrix(3,3);
+d.populate([[-6, 1, 1, 6],
+            [-8, 5, 8, 6],
+            [-1, 0, 8, 2],
+            [-7, 1, -1, 1]]);
+let det = d.submatrix(2, 1);
 console.log(det);
