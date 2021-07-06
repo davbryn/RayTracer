@@ -123,6 +123,11 @@ export default class Matrix {
         }
         return result;
     }
+
+    minor(row, col) {
+        let b = this.submatrix(row, col);
+        return b.determinate_2x2(row, col);
+    }
    
 }
 
