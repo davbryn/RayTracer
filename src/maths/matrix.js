@@ -102,10 +102,19 @@ export default class Matrix {
         return result;
     }
 
-    determinate_2x2() {
-        let determinate = ((this.value(0,0) * this.value(1,1)) - (this.value(0,1) * this.value(1,0)));
-        return determinate;
+    determinate() {
+        if (this.numColumns == 2) {
+            return ((this.value(0,0) * this.value(1,1)) - (this.value(1,0) * this.value(0,1)));
+        } else {
+            let det = 0;
+            for(var col=0; col < this.numColumns; col++) {
+                det += (this.value(0,col) * this.cofactor(0, col));
+            }
+            return det;
+        }
     }
+
+
 
     submatrix(row, col) {
         let result = new Matrix(this.numRows-1, this.numColumns-1);
@@ -126,7 +135,7 @@ export default class Matrix {
 
     minor(row, col) {
         let b = this.submatrix(row, col);
-        return b.determinate_2x2(row, col);
+        return b.determinate();
     }
 
     cofactor(row, col) {

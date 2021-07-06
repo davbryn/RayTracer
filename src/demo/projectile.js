@@ -175,15 +175,27 @@ function startAnimating(fps) {
 // let det = d.minor(1, 0);
 // console.log(det);
 
-let d = new Matrix(3,3);
-d.populate([[3, 5, 0],
-            [2, -1, -7],
-            [6, -1, 5]]);
-let det = d.minor(0, 0);
-console.log(det);
-det = d.cofactor(0, 0);
-console.log(det);
-det = d.minor(1, 0);
-console.log(det);
-det = d.cofactor(1, 0);
-console.log(det);
+// let d = new Matrix(3,3);
+// d.populate([[3, 5, 0],
+//             [2, -1, -7],
+//             [6, -1, 5]]);
+// let det = d.submatrix(1, 0);
+// console.log(det);
+// det = det.determinate_2x2();
+// console.log(det);
+// let minor = d.minor(1,0);
+// console.log(minor);
+
+let d = new Matrix(4,4);
+d.populate([[-2, -8, 3, 5],
+            [-3, 1, 7, 3],
+            [1, 2, -9, 6],
+            [-6, 7, 7, -9]]);
+
+// d.populate([[1, 2, 6],
+            // [-5, 8, -4],
+            // [2, 6, 4]]);
+
+let cc = d.determinate();
+console.log(cc);
+
