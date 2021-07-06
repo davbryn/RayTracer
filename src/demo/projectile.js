@@ -124,15 +124,15 @@ function startAnimating(fps) {
 //let o = a.multiply(b);
 //o.log();
 
-let t = new Tuple(1, 2, 3, 1);
-let d = new Matrix(0,0);
-d.populate([[1, 2, 3, 4],
-            [2, 4, 4, 2],
-            [8, 6, 4, 1],
-            [0, 0, 0, 1]]);
+// let t = new Tuple(1, 2, 3, 1);
+// let d = new Matrix(0,0);
+// d.populate([[1, 2, 3, 4],
+//             [2, 4, 4, 2],
+//             [8, 6, 4, 1],
+//             [0, 0, 0, 1]]);
 
-let o = d.multiply(t);
-o.log();
+// let o = d.multiply(t);
+// o.log();
 // console.log('@@@');
 // let matrix = new Matrix(4, 4);
 // matrix.log();
@@ -142,3 +142,12 @@ o.log();
 // matrix.log();
 
 
+let d = new Matrix(0,0);
+d.populate([[1, 2, 3, 4],
+            [2, 4, 4, 2],
+            [8, 6, 4, 1],
+            [0, 0, 0, 1]]);
+
+d.log();
+d = d.transpose();
+d.log();

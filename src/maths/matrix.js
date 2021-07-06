@@ -93,6 +93,16 @@ export default class Matrix {
         }
         return result;
     }
+
+    transpose() {
+        let result = new Matrix(this.numRows, this.numColumns);
+        for(var row=0; row < this.numRows; row++) {
+            for(var col=0; col < this.numColumns; col++) {
+                result.matrix[col][row] =   this.value(row, col)
+            }
+        }
+        return result;
+    }
    
 }
 
