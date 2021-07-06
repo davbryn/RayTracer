@@ -168,9 +168,22 @@ function startAnimating(fps) {
 // let det = d.submatrix(2, 1);
 // console.log(det);
 
+// let d = new Matrix(3,3);
+// d.populate([[3, 5, 0],
+//             [2, -1, -7],
+//             [6, -1, 5]]);
+// let det = d.minor(1, 0);
+// console.log(det);
+
 let d = new Matrix(3,3);
 d.populate([[3, 5, 0],
             [2, -1, -7],
             [6, -1, 5]]);
-let det = d.minor(1, 0);
+let det = d.minor(0, 0);
+console.log(det);
+det = d.cofactor(0, 0);
+console.log(det);
+det = d.minor(1, 0);
+console.log(det);
+det = d.cofactor(1, 0);
 console.log(det);

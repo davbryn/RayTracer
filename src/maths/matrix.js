@@ -128,6 +128,16 @@ export default class Matrix {
         let b = this.submatrix(row, col);
         return b.determinate_2x2(row, col);
     }
+
+    cofactor(row, col) {
+        let minor = this.minor(row, col);
+
+        if (((row + col) % 2) != 0) {
+            minor = -minor;
+        }
+            
+        return minor;
+    }
    
 }
 
