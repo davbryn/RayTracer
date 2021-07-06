@@ -65,6 +65,10 @@ export default class Tuple {
                          (this.x * tuple.y - this.y * tuple.x),
                          0.0);
     }
+
+    log() {
+        console.log(this);
+    }
    
 }
 

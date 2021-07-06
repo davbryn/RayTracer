@@ -85,6 +85,12 @@ export default class Matrix {
                                             this.value(row, 3) * matrix.value(3, col);
             }
         }
+        if (result.numColumns == 1) { // Give back a tuple if it is a tuple
+            return new Tuple(result.value(0, 0),
+                             result.value(1, 0), 
+                             result.value(2, 0),
+                             result.value(3, 0));
+        }
         return result;
     }
    
