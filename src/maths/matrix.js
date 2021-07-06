@@ -147,6 +147,25 @@ export default class Matrix {
             
         return minor;
     }
+
+    isInvertable() {
+        return this.determinate() != 0;
+    }
+
+    inverse() {
+        if (!this.isInvertable()) {
+            return;
+        }
+
+        let result = new Matrix(this.numRows, this.numColumns);
+        for(var row=0; row < this.numRows; row++) {
+            for(var col=0; col < this.numColumns; col++) {
+                let c = this.cofactor(row, col);
+                result.matrix[col][row] = c / this.determinate();
+            }
+        }
+        return result;
+    }
    
 }
 

@@ -186,16 +186,36 @@ function startAnimating(fps) {
 // let minor = d.minor(1,0);
 // console.log(minor);
 
-let d = new Matrix(4,4);
-d.populate([[-2, -8, 3, 5],
-            [-3, 1, 7, 3],
-            [1, 2, -9, 6],
-            [-6, 7, 7, -9]]);
+// let d = new Matrix(4,4);
+// d.populate([[-2, -8, 3, 5],
+//             [-3, 1, 7, 3],
+//             [1, 2, -9, 6],
+//             [-6, 7, 7, -9]]);
 
 // d.populate([[1, 2, 6],
             // [-5, 8, -4],
             // [2, 6, 4]]);
 
-let cc = d.determinate();
-console.log(cc);
+// let cc = d.determinate();
+// console.log(cc);
 
+// let d = new Matrix(4,4);
+// d.populate([[-5, 2, 6, -8],
+//             [1, -5, 1, 8],
+//             [7, 7, -6, -7],
+//             [1, -3, 7, 4]]);
+
+// let i = d.inverse();
+
+// i.log();
+
+
+let d = new Matrix(4,4);
+d.populate([[8, -5, 9, 2],
+            [7, 5, 6, 1],
+            [-6, 0, 9, 6],
+            [-3, 0, -9, -4]]);
+
+let i = d.inverse();
+
+i.log();
