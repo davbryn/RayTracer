@@ -93,34 +93,52 @@ function startAnimating(fps) {
     animate();
 }
 
-startAnimating(60);
+//startAnimating(60);
 
-let a = new Matrix(0,0);
+// let a = new Matrix(0,0);
 
-a.populate([[1, 2, 3, 4],
-            [5, 6, 7, 8],
-            [9, 8, 7, 6],
-            [5, 4, 3, 2]
-]);
+// a.populate([[1, 2, 3, 4],
+//             [5, 6, 7, 8],
+//             [9, 8, 7, 6],
+//             [5, 4, 3, 2]
+// ]);
 
-let b = new Matrix(0,0);
+// let b = new Matrix(0,0);
 
-b.populate([[-2, 1, 2, 3],
-            [3, 2, 1, -1],
-            [4, 3, 6, 5],
-            [1, 2, 7, 8]
-]);
+// b.populate([[-2, 1, 2, 3],
+//             [3, 2, 1, -1],
+//             [4, 3, 6, 5],
+//             [1, 2, 7, 8]
+// ]);
 
-a.log();
-b.log();
-let o = a.multiply(b);
+
+
+
+
+
+
+
+//a.log();
+//b.log();
+//t.log()
+//let o = a.multiply(b);
+//o.log();
+
+let t = new Tuple(1, 2, 3, 1);
+let d = new Matrix(0,0);
+d.populate([[1, 2, 3, 4],
+            [2, 4, 4, 2],
+            [8, 6, 4, 1],
+            [0, 0, 0, 1]]);
+
+let o = d.multiply(t);
 o.log();
-
-let matrix = new Matrix(4, 4);
-matrix.log();
-matrix = new Matrix(2, 2);
-matrix.log();
-matrix = new Matrix(3, 3);
-matrix.log();
+// console.log('@@@');
+// let matrix = new Matrix(4, 4);
+// matrix.log();
+// matrix = new Matrix(2, 2);
+// matrix.log();
+// matrix = new Matrix(3, 3);
+// matrix.log();
 
 
