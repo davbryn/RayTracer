@@ -61,8 +61,6 @@ export default class Matrix {
     }
 
 
-    // Multiply code is wrong: It is assuming two identically sized matrix
-    // It needs rewriting to support 4x4  X  1x4
 
     multiply(matrix) {
         // Handle the case of multiplying by a tuple
@@ -102,6 +100,11 @@ export default class Matrix {
             }
         }
         return result;
+    }
+
+    determinate_2x2() {
+        let determinate = ((this.value(0,0) * this.value(1,1)) - (this.value(0,1) * this.value(1,0)));
+        return determinate;
     }
    
 }

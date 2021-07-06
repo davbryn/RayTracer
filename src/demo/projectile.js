@@ -147,7 +147,14 @@ function startAnimating(fps) {
 //             [2, 4, 4, 2],
 //             [8, 6, 4, 1],
 //             [0, 0, 0, 1]]);
-let d = Matrix.identity();
-d.log();
-d = d.transpose();
-d.log();
+// let d = Matrix.identity();
+// d.log();
+// d = d.transpose();
+// d.log();
+
+
+let d = new Matrix(2,2);
+d.populate([[1, 5],
+            [-3, 2]]);
+let det = d.determinate_2x2();
+console.log(det);
