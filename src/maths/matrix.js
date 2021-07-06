@@ -15,7 +15,7 @@ export default class Matrix {
         }
     }
 
-    identity() {
+    static identity() {
         let identity = new Matrix(0,0);
 
         identity.populate([[1, 0, 0, 0],
