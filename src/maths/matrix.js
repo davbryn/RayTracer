@@ -166,6 +166,61 @@ export default class Matrix {
         }
         return result;
     }
+
+    static translate(x, y, z) {
+        let mat = Matrix.identity();
+        mat.matrix[0][3] = x;
+        mat.matrix[1][3] = y;
+        mat.matrix[2][3] = z;
+        return mat;
+    }
+
+    static scale(x, y, z) {
+        let mat = Matrix.identity();
+        mat.matrix[0][0] = x;
+        mat.matrix[1][1] = y;
+        mat.matrix[2][2] = z;
+        return mat;
+    }
+
+    static rotate_x(radians) {
+        let mat = Matrix.identity();
+        mat.matrix[0][0] = 1;
+        mat.matrix[1][1] = Math.cos(radians);
+        mat.matrix[1][2] = -Math.sin(radians);
+        mat.matrix[2][1] = Math.sin(radians);
+        mat.matrix[2][2] = Math.cos(radians);
+        return mat;
+    }
+
+    static rotate_y(radians) {
+        let mat = Matrix.identity();
+        mat.matrix[0][0] = Math.cos(radians);
+        mat.matrix[1][2] = Math.sin(radians);
+        mat.matrix[2][0] = -Math.sin(radians);
+        mat.matrix[2][2] = Math.cos(radians);
+        return mat;
+    }
+
+    static rotate_z(radians) {
+        let mat = Matrix.identity();
+        mat.matrix[0][0] = Math.cos(radians);
+        mat.matrix[0][1] = -Math.sin(radians);
+        mat.matrix[1][1] = Math.cos(radians);
+        mat.matrix[1][0] = Math.sin(radians);
+        return mat;
+    }
+
+    static shear(xy, xz, yx, yz, zx, zy) {
+        let mat = Matrix.identity();
+        mat.matrix[0][1] = xy;
+        mat.matrix[0][2] = xz;
+        mat.matrix[1][0] = yx;
+        mat.matrix[1][2] = yz;
+        mat.matrix[2][0] = zx;
+        mat.matrix[2][1] = zy;
+        return mat;
+    }
    
 }
 

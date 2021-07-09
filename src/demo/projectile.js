@@ -210,12 +210,18 @@ function startAnimating(fps) {
 // i.log();
 
 
-let d = new Matrix(4,4);
-d.populate([[8, -5, 9, 2],
-            [7, 5, 6, 1],
-            [-6, 0, 9, 6],
-            [-3, 0, -9, -4]]);
+// let d = new Matrix(4,4);
+// d.populate([[8, -5, 9, 2],
+//             [7, 5, 6, 1],
+//             [-6, 0, 9, 6],
+//             [-3, 0, -9, -4]]);
 
-let i = d.inverse();
+// let i = d.inverse();
 
-i.log();
+// i.log();
+
+
+let p = Tuple.point(2, 3, 4);
+let s = Matrix.shear(1, 0, 0, 0, 0, 0);
+let p2 = s.multiply(p);
+p2.log();
