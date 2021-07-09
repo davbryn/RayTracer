@@ -221,6 +221,16 @@ export default class Matrix {
         mat.matrix[2][1] = zy;
         return mat;
     }
+
+    static buildTransform(transforms) {
+        let mat = transforms[transforms.length-1];
+        if (transforms.length > 1) {
+            for (let index = transforms.length-2; index >= 0; index--) {
+                mat = mat.multiply(transforms[index]);
+            }
+        }
+        return mat;
+    }
    
 }
 

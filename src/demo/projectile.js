@@ -221,11 +221,30 @@ function startAnimating(fps) {
 // i.log();
 
 
-let p = Tuple.point(1, 0, 1);
-let A = Matrix.rotate_x(Math.PI / 2);
-let B = Matrix.scale(5, 5, 5);
-let C = Matrix.translate(10, 5, 7);
-// Reverse the order of the operations
-let transform = C.multiply(B).multiply(A);
-let p2 = transform.multiply(p);
-p2.log();
+// let p = Tuple.point(1, 0, 1);
+// p.log();
+// let A = Matrix.rotate_x(Math.PI / 2);
+// A.log();
+// let B = Matrix.scale(5, 5, 5);
+// B.log();
+// let C = Matrix.translate(10, 5, 7);
+// C.log();
+// // Reverse the order of the operations
+// let transform = C.multiply(B).multiply(A);
+// transform.log();
+// // let p2 = transform.multiply(p);
+// // p2.log();
+
+// console.log("@@@");
+// // // Fluency test
+
+let p3 = Tuple.point(1, 0, 1);
+let T = Matrix.buildTransform([Matrix.identity(),
+                               Matrix.rotate_x(Math.PI / 2),
+                               Matrix.scale(5, 5, 5),
+                               Matrix.translate(10, 5, 7)
+                            ]);
+
+console.log(T);
+let p4 = T.multiply(p3);
+p4.log();
