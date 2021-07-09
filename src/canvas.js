@@ -9,6 +9,10 @@ export default class Canvas {
         this.pixels = new Array(this.width * this.height).fill(new Color(0, 0, 0));
     }
 
+    clear() {
+        this.pixels = new Array(this.width * this.height).fill(new Color(0, 0, 0));
+    }
+    
     width() {
         return this.width;
     }

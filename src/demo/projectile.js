@@ -14,6 +14,7 @@ var fps, fpsInterval, startTime, now, then, elapsed;
 let start = 0;
 const canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext('2d')
+let drawCount = 0;
 
 const width = 1000;
 const height = 1000;
@@ -41,23 +42,64 @@ function drawCircle(ctx, x, y, radius, fill, stroke, strokeWidth) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  function drawClock() {
+
+    let center = Tuple.point(width / 2, height / 2, 0);
+    let length = width / 3;
+    let twelveOclock = Tuple.point(0,length,0);
+
+    for(var i=1; i <= 12; i++) {
+
+        let T = Matrix.buildTransform([ Matrix.identity(),
+                                        Matrix.rotate_z(deg2rad((360 / 12) * i)),
+                                    
+        ]);
+        let dot = T.multiply(twelveOclock);
+        c.writePixel( center.x+dot.x, center.y+dot.y, new Color(255,255,255));
+        c.renderToCanvas('myCanvas');
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function tick() {
     // Clear canvas
-    
-    velocity = velocity.add(gravity).add(wind);
-    position = position.add(velocity);
-    if ((position.x > 1000) || (position.x < 0)) {
-        velocity.x = -velocity.x;
-    }
-    if ((position.y > 1000) || (position.y < 0)) {
-        velocity.y = -velocity.y;
-    }
-    //ctx.clearRect(0, 0, canvas.width, canvas.height);
-    //drawCircle(ctx, position.x, position.y, 100 * position.normalize().x, 'black', 'red', 2 * position.normalize().x)
-
-    c.writePixel( position.x, position.y,new Color(255,0,255));
-
-    c.renderToCanvas('myCanvas');
+    drawCount++;
+    drawClock(drawCount);
 
 }
 
@@ -250,21 +292,5 @@ function startAnimating(fps) {
 // let p4 = T.multiply(p3);
 // p4.log();
 
+startAnimating(60);
 
-
-// Test clock
-
-let center = Tuple.point(width / 2, height / 2, 0);
-let length = width / 3;
-let twelveOclock = Tuple.point(0,length,0);
-
-for(var i=1; i <= 12; i++) {
-
-    let T = Matrix.buildTransform([ Matrix.identity(),
-                                    Matrix.rotate_z(i * (Math.PI/6)),
-                                  
-    ]);
-    let dot = T.multiply(twelveOclock);
-    c.writePixel( center.x+dot.x, center.y+dot.y,new Color(255,255,255));
-    c.renderToCanvas('myCanvas');
-}
