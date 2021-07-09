@@ -221,7 +221,11 @@ function startAnimating(fps) {
 // i.log();
 
 
-let p = Tuple.point(2, 3, 4);
-let s = Matrix.shear(1, 0, 0, 0, 0, 0);
-let p2 = s.multiply(p);
+let p = Tuple.point(1, 0, 1);
+let A = Matrix.rotate_x(Math.PI / 2);
+let B = Matrix.scale(5, 5, 5);
+let C = Matrix.translate(10, 5, 7);
+// Reverse the order of the operations
+let transform = C.multiply(B).multiply(A);
+let p2 = transform.multiply(p);
 p2.log();
