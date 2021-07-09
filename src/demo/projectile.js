@@ -2,7 +2,7 @@ import Tuple from '../maths/tuple.js';
 import Matrix from '../maths/matrix.js';
 import Canvas from '../canvas.js';
 import Color from '../color.js';
-
+import {deg2rad} from  '../maths/helpers.js'
 
 
 var frameCount = 0;
@@ -15,7 +15,8 @@ let start = 0;
 const canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext('2d')
 
-
+const width = 1000;
+const height = 1000;
 let c = new Canvas(1000,1000);
 
 
@@ -238,13 +239,32 @@ function startAnimating(fps) {
 // console.log("@@@");
 // // // Fluency test
 
-let p3 = Tuple.point(1, 0, 1);
-let T = Matrix.buildTransform([Matrix.identity(),
-                               Matrix.rotate_x(Math.PI / 2),
-                               Matrix.scale(5, 5, 5),
-                               Matrix.translate(10, 5, 7)
-                            ]);
+// let p3 = Tuple.point(1, 0, 1);
+// let T = Matrix.buildTransform([Matrix.identity(),
+//                                Matrix.rotate_x(Math.PI / 2),
+//                                Matrix.scale(5, 5, 5),
+//                                Matrix.translate(10, 5, 7)
+//                             ]);
 
-console.log(T);
-let p4 = T.multiply(p3);
-p4.log();
+// console.log(T);
+// let p4 = T.multiply(p3);
+// p4.log();
+
+
+
+// Test clock
+
+let center = Tuple.point(width / 2, height / 2, 0);
+let length = width / 3;
+let twelveOclock = Tuple.point(0,length,0);
+
+for(var i=1; i <= 12; i++) {
+
+    let T = Matrix.buildTransform([ Matrix.identity(),
+                                    Matrix.rotate_z(i * (Math.PI/6)),
+                                  
+    ]);
+    let dot = T.multiply(twelveOclock);
+    c.writePixel( center.x+dot.x, center.y+dot.y,new Color(255,255,255));
+    c.renderToCanvas('myCanvas');
+}
