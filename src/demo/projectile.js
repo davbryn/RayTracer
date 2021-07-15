@@ -3,7 +3,7 @@ import Matrix from '../maths/matrix.js';
 import Canvas from '../canvas.js';
 import Color from '../color.js';
 import {deg2rad} from  '../maths/helpers.js'
-
+import Ray from '../maths/ray.js';
 
 var frameCount = 0;
 var fps, fpsInterval, startTime, now, then, elapsed;
@@ -61,17 +61,20 @@ function drawCircle(ctx, x, y, radius, fill, stroke, strokeWidth) {
     let center = Tuple.point(width / 2, height / 2, 0);
     let length = width / 3;
     let twelveOclock = Tuple.point(0,length,0);
+    let angleDivisor = deg2rad(360 / 12); // Web Scale
+    let renderColor = new Color(255,255,255);
 
     for(var i=1; i <= 12; i++) {
 
         let T = Matrix.buildTransform([ Matrix.identity(),
-                                        Matrix.rotate_z(deg2rad((360 / 12) * i)),
+                                        Matrix.rotate_z(angleDivisor * i),
                                     
         ]);
         let dot = T.multiply(twelveOclock);
-        c.writePixel( center.x+dot.x, center.y+dot.y, new Color(255,255,255));
-        c.renderToCanvas('myCanvas');
+        c.writePixel( center.x+dot.x, center.y+dot.y, renderColor);
+        
     }
+    c.renderToCanvas('myCanvas');
   }
 
 
@@ -294,3 +297,8 @@ function startAnimating(fps) {
 
 startAnimating(60);
 
+let ray = new Ray(Tuple.point(2, 3, 4), Tuple.vector(1, 0, 0));
+console.log(Ray.position(ray, 0));
+console.log(Ray.position(ray, 1));
+console.log(Ray.position(ray, -1));
+console.log(Ray.position(ray, 2.5));
