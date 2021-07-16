@@ -307,16 +307,28 @@ function startAnimating(fps) {
 
 
 
+// // Let's build a sphere
+// let sphere = new Sphere(Tuple.point(0, 0, 0), 1.5);
+
+// // and make some rays to probe the scene
+// let ray = new Ray(Tuple.point(0, 0, -5), Tuple.vector(0, 0, 1));
+// let intersectionA = new Intersection(5, sphere);
+// let intersectionB = new Intersection(7, sphere);
+// let intersectionC = new Intersection(-3, sphere);
+// let intersectionD = new Intersection(2, sphere);
+
+// let intersections = Ray.intersections([intersectionA, intersectionB, intersectionC, intersectionD]);
+// console.log(intersections);
+// console.log(Ray.hit(intersections));
+
+
 // Let's build a sphere
 let sphere = new Sphere(Tuple.point(0, 0, 0), 1.5);
 
 // and make some rays to probe the scene
-let ray = new Ray(Tuple.point(0, 0, -5), Tuple.vector(0, 0, 1));
-let intersectionA = new Intersection(5, sphere);
-let intersectionB = new Intersection(7, sphere);
-let intersectionC = new Intersection(-3, sphere);
-let intersectionD = new Intersection(2, sphere);
+let ray = new Ray(Tuple.point(1, 2, 3), Tuple.vector(0, 1, 0));
+let matrix = Matrix.translate(3, 4, 5);
+let ray2 = ray.transform(matrix);
 
-let intersections = Ray.intersections([intersectionA, intersectionB, intersectionC, intersectionD]);
-console.log(intersections);
-console.log(Ray.hit(intersections));
+console.log(ray);
+console.log(ray2);

@@ -1,6 +1,7 @@
 'use strict';
 import Intersection from './intersection.js';
 import IntersectionList from './intersectionsList.js';
+import Matrix from './matrix.js';
 
 export default class Ray {
     constructor(origin, direction) {
@@ -44,5 +45,11 @@ export default class Ray {
             }
         }
         return closestIntersection;
+    }
+
+    transform(matrix) {
+        let o2 = matrix.multiply(this.origin);
+        let d2 = matrix.multiply(this.direction);
+        return new Ray(o2, d2);
     }
 }
