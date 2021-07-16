@@ -322,8 +322,6 @@ function startAnimating(fps) {
 // console.log(Ray.hit(intersections));
 
 
-// Let's build a sphere
-let sphere = new Sphere(Tuple.point(0, 0, 0), 1.5);
 
 // and make some rays to probe the scene
 // let ray = new Ray(Tuple.point(1, 2, 3), Tuple.vector(0, 1, 0));
@@ -333,8 +331,13 @@ let sphere = new Sphere(Tuple.point(0, 0, 0), 1.5);
 // console.log(ray);
 // console.log(ray2);
 
+let ray = new Ray(Tuple.point(0, 0, -5), Tuple.vector(0, 0, 1));
+let matrix = Matrix.scale(2, 2, 2);
 
-let matrix = Matrix.translate(2, 3, 4);
-
+// Let's build a sphere
+let sphere = new Sphere(Tuple.point(0, 0, 0), 1.0);
+let s = sphere.transform(matrix);
 console.log(sphere);
-console.log(sphere.transform(matrix));
+console.log(s);
+let r2 = ray.transform(matrix.inverse());
+console.log(Ray.intersects(r2, s));

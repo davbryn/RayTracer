@@ -14,6 +14,7 @@ export default class Ray {
     }
 
     static intersects(ray, sphere) {
+        
         let sphereToRay = ray.origin.subtract(sphere.origin);
         
         let a = ray.direction.dotProduct(ray.direction);
