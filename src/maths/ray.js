@@ -1,5 +1,6 @@
 'use strict';
-import Tuple from '../maths/tuple.js';
+import Intersection from './intersection.js';
+import IntersectionList from './intersectionsList.js';
 
 export default class Ray {
     constructor(origin, direction) {
@@ -24,10 +25,14 @@ export default class Ray {
             return [];
         }
 
-        let t1 = ((-b - Math.sqrt(discriminant)) /(2 * a));
-        let t2 = ((-b + Math.sqrt(discriminant)) /(2 * a));
+        let intersectionA = new Intersection((-b - Math.sqrt(discriminant)) /(2 * a), sphere);
+        let intersectionB = new Intersection((-b + Math.sqrt(discriminant)) /(2 * a), sphere);
 
-        return [t1, t2];
+        return this.intersections([intersectionA, intersectionB]);
 
+    }
+
+    static intersections(intersectionArray) {
+        return new IntersectionList(intersectionArray);
     }
 }

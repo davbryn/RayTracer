@@ -12,7 +12,7 @@ export default class Canvas {
     clear() {
         this.pixels = new Array(this.width * this.height).fill(new Color(0, 0, 0));
     }
-    
+
     width() {
         return this.width;
     }
@@ -36,6 +36,7 @@ export default class Canvas {
             return [this.width * ry + rx];
         }
     }
+    
 
     renderToCanvas(id) {
         const canvas = document.getElementById(id);
