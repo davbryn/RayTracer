@@ -14,11 +14,11 @@ export default class Ray {
     }
 
     static intersects(ray, sphere) {
+        let ray2 = ray.transform(sphere.getTransform().inverse());
+        let sphereToRay = ray2.origin.subtract(sphere.origin);
         
-        let sphereToRay = ray.origin.subtract(sphere.origin);
-        
-        let a = ray.direction.dotProduct(ray.direction);
-        let b = 2 * ray.direction.dotProduct(sphereToRay);
+        let a = ray2.direction.dotProduct(ray2.direction);
+        let b = 2 * ray2.direction.dotProduct(sphereToRay);
         let c = sphereToRay.dotProduct(sphereToRay) - 1;
 
         let discriminant = (b*b) - 4 * a * c;
