@@ -35,4 +35,14 @@ export default class Ray {
     static intersections(intersectionArray) {
         return new IntersectionList(intersectionArray);
     }
+
+    static hit(intersectionList) {
+        let closestIntersection = null;
+        for(var i=0; i < intersectionList.count; i++) {
+            if ((!closestIntersection) || (intersectionList.xs[i].time < intersectionList.time)) {
+                closestIntersection = intersectionList.xs[i];
+            }
+        }
+        return closestIntersection;
+    }
 }

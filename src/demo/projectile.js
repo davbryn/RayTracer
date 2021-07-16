@@ -310,4 +310,6 @@ function startAnimating(fps) {
 let ray = new Ray(Tuple.point(0, 0, -5), Tuple.vector(0, 0, 1));
 let sphere = new Sphere(Tuple.point(0, 0, 0), 1.5);
 
-console.log(Ray.intersects(ray, sphere));
+let intersections = Ray.intersects(ray, sphere);
+console.log(intersections);
+console.log(Ray.hit(intersections));
