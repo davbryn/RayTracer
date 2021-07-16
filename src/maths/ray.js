@@ -39,7 +39,7 @@ export default class Ray {
     static hit(intersectionList) {
         let closestIntersection = null;
         for(var i=0; i < intersectionList.count; i++) {
-            if ((!closestIntersection) || (intersectionList.xs[i].time < intersectionList.time)) {
+            if ((!closestIntersection) || ((intersectionList.xs[i].time < intersectionList.time) && (intersectionList.xs[i].time >= 0))) {
                 closestIntersection = intersectionList.xs[i];
             }
         }
