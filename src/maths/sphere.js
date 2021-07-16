@@ -9,4 +9,9 @@ export default class Sphere {
 
     }
 
+    transform(matrix) {
+        let o2 = matrix.multiply(this.origin);
+        return new Sphere(o2, this.radius);
+    }
+
 }
