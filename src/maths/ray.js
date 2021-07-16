@@ -8,7 +8,7 @@ export default class Ray {
         this.direction = direction;
     }
 
-    static  position(ray, time) {
+    static position(ray, time) {
         return ray.origin.add(ray.direction.multiply(time));
     }
 

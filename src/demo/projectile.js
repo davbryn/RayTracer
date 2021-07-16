@@ -5,7 +5,7 @@ import Color from '../color.js';
 import {deg2rad} from  '../maths/helpers.js'
 import Ray from '../maths/ray.js';
 import Sphere from '../maths/sphere.js';
-import IntersectionList from '../maths/intersectionsList.js';
+import Intersection from '../maths/intersection.js';
 
 var frameCount = 0;
 var fps, fpsInterval, startTime, now, then, elapsed;
@@ -307,9 +307,16 @@ function startAnimating(fps) {
 
 
 
-let ray = new Ray(Tuple.point(0, 0, -5), Tuple.vector(0, 0, 1));
+// Let's build a sphere
 let sphere = new Sphere(Tuple.point(0, 0, 0), 1.5);
 
-let intersections = Ray.intersects(ray, sphere);
+// and make some rays to probe the scene
+let ray = new Ray(Tuple.point(0, 0, -5), Tuple.vector(0, 0, 1));
+let intersectionA = new Intersection(5, sphere);
+let intersectionB = new Intersection(7, sphere);
+let intersectionC = new Intersection(-3, sphere);
+let intersectionD = new Intersection(2, sphere);
+
+let intersections = Ray.intersections([intersectionA, intersectionB, intersectionC, intersectionD]);
 console.log(intersections);
 console.log(Ray.hit(intersections));
