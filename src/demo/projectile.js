@@ -7,40 +7,14 @@ import Ray from '../maths/ray.js';
 import Sphere from '../maths/sphere.js';
 import Intersection from '../maths/intersection.js';
 
-var frameCount = 0;
-var fps, fpsInterval, startTime, now, then, elapsed;
 
 
 
 
-let start = 0;
-const canvas = document.getElementById('myCanvas');
-let ctx = canvas.getContext('2d')
-let drawCount = 0;
 
-const width = 1000;
-const height = 1000;
-let c = new Canvas(1000,1000);
 
 
-let position = Tuple.point(200, 200, 0);
-let velocity = Tuple.vector(2.0, -5, 0);
-let gravity = Tuple.vector(0.0, 0.2, 0);
-let wind = Tuple.vector(0.2, 0.0, 0);
 
-function drawCircle(ctx, x, y, radius, fill, stroke, strokeWidth) {
-    ctx.beginPath()
-    ctx.arc(x, y, radius, 0, 2 * Math.PI, false)
-    if (fill) {
-      ctx.fillStyle = fill
-      ctx.fill()
-    }
-    if (stroke) {
-      ctx.lineWidth = strokeWidth
-      ctx.strokeStyle = stroke
-      ctx.stroke()
-    }
-  }
 
 
 
@@ -58,88 +32,7 @@ function drawCircle(ctx, x, y, radius, fill, stroke, strokeWidth) {
 
 
 
-  function drawClock() {
 
-    let center = Tuple.point(width / 2, height / 2, 0);
-    let length = width / 3;
-    let twelveOclock = Tuple.point(0,length,0);
-    let angleDivisor = deg2rad(360 / 12); // Web Scale
-    let renderColor = new Color(255,255,255);
-
-    for(var i=1; i <= 12; i++) {
-
-        let T = Matrix.buildTransform([ Matrix.identity(),
-                                        Matrix.rotate_z(angleDivisor * i),
-                                    
-        ]);
-        let dot = T.multiply(twelveOclock);
-        c.writePixel( center.x+dot.x, center.y+dot.y, renderColor);
-        
-    }
-    c.renderToCanvas('myCanvas');
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function tick() {
-    // Clear canvas
-    drawCount++;
-    drawClock(drawCount);
-
-}
-
-function animate(timestamp) { 
-
-        // request another frame
-
-    requestAnimationFrame(animate);
-
-    // calc elapsed time since last loop
-
-    now = Date.now();
-    elapsed = now - then;
-
-    // if enough time has elapsed, draw the next frame
-
-    if (elapsed > fpsInterval) {
-
-        // Get ready for next frame by setting then=now, but also adjust for your
-        // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
-        then = now - (elapsed % fpsInterval);
-
-        // Put your drawing code here
-        tick();
-    }
-}
-
-
-
-function startAnimating(fps) {
-    fpsInterval = 1000 / fps;
-    then = Date.now();
-    startTime = then;
-    animate();
-}
 
 //startAnimating(60);
 
@@ -331,13 +224,58 @@ function startAnimating(fps) {
 // console.log(ray);
 // console.log(ray2);
 
-let ray = new Ray(Tuple.point(0, 0, -5), Tuple.vector(0, 0, 1));
-let matrix = Matrix.scale(2, 2, 2);
+// let ray = new Ray(Tuple.point(0, 0, -5), Tuple.vector(0, 0, 1));
+// let matrix = Matrix.scale(2, 2, 2);
 
-// Let's build a sphere
+// // Let's build a sphere
+// let sphere = new Sphere(Tuple.point(0, 0, 0), 1.0);
+// let s = sphere.transform(matrix);
+// console.log(sphere);
+// console.log(s);
+
+// console.log(Ray.intersects(ray, s));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const wallZ = 10;
+const wallSize = 7;
+const canvasPixels = 1000;
+const pixelSize = wallSize / canvasPixels;
+const halfWall = wallSize / 2;
+const rayOrigin = Tuple.point(0, 0, -5);
+
+let c = new Canvas(canvasPixels,canvasPixels);
+let color = new Color(255, 0, 0);
+let colorBG = new Color(0, 0, 0);
 let sphere = new Sphere(Tuple.point(0, 0, 0), 1.0);
-let s = sphere.transform(matrix);
-console.log(sphere);
-console.log(s);
 
-console.log(Ray.intersects(ray, s));
+for (var y=0; y < canvasPixels -1; y++) {
+    let worldY = halfWall - pixelSize * y;
+    for (var x=0; x < canvasPixels -1; x++){
+        let worldX = -halfWall + pixelSize * x;
+        let destination = Tuple.point(worldX, worldY, wallZ);
+        let r = new Ray(rayOrigin, (destination.subtract(rayOrigin)).normalize());
+        let intersections = Ray.intersects(r, sphere);
+
+        if (Ray.hit(intersections)) {
+            c.writePixel( x, y, color);
+        } else {
+            c.writePixel( x, y, colorBG);
+        }
+    }
+}
+
+c.renderToCanvas('myCanvas');
+console.log("Render complete");
